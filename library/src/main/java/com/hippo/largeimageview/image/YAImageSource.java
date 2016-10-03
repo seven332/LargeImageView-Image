@@ -166,14 +166,16 @@ public class YAImageSource extends BitmapSource implements Animatable, Runnable 
     private void reset() {
         if (mBitmap != null && mRenderer != null) {
             mRenderer.reset();
-            mRenderer.render(mBitmap, 0, 0, 0, 0, getWidth(), getHeight(), 1, false, 0);
+            // super.recycle() might be called, so get width and height from mBitmap
+            mRenderer.render(mBitmap, 0, 0, 0, 0, mBitmap.getWidth(), mBitmap.getHeight(), 1, false, 0);
         }
     }
 
     private void advance() {
         if (mBitmap != null && mRenderer != null) {
             mRenderer.advance();
-            mRenderer.render(mBitmap, 0, 0, 0, 0, getWidth(), getHeight(), 1, false, 0);
+            // super.recycle() might be called, so get width and height from mBitmap
+            mRenderer.render(mBitmap, 0, 0, 0, 0, mBitmap.getWidth(), mBitmap.getHeight(), 1, false, 0);
         }
     }
 
